@@ -17,26 +17,26 @@ const app = express();
 // );
 
 
-app.use("/",(req,res,next)=>{
-    res.send("response from use ");
+// app.use("/",(req,res,next)=>{
+//     res.send("response from use ");
+//     next();
+// })
+app.use("/hello",(req,res,next)=>{
+    res.send("response form hello");
+    next()
+});
+
+app.get("/user",(req,res)=>{
+    res.send({firstName:"lakshya", lastName:"mudgal"});
+});
+
+
+app.post("/user",(req,res,next)=>{
+    res.send("hheheehehehehe");
     next();
-})
-
-
-app.get("/user", 
-    (req,res,next)=>{
-        console.log("handlng /user route ");
-        next();
-    },
-    (req,res,next)=>{
-        next();
-    },
-    (req,res,next)=>{
-        // res.send("2nd route handler");
-    }
-);
+});
 
 
 app.listen(3333,()=>{
-    console.log("app listening at 3333");
-})
+console.log("listening to 3333");
+});
