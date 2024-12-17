@@ -1,16 +1,28 @@
 const express = require('express');
 
 const app = express();
+const User = require("./models/user")
+const connectDB = require("./config/database");
 
-const {adminAuth}=require('./Middlewares/auth')
+app.post("/signup", async (req,res)=>{
 
-app.use("/admin", adminAuth);
+    const user = new User({
+        firstName: "Mehul",
+        lastName:"mudgal",
+        emailId:"Mehul34mudgalinr@gmail.com",
+        password:"mannuBhai@1504"
+    });
 
-app.get("/admin/getData",(req,res,next)=>{
-    res.send("all data sent ");
+    await user.save();
+    res.send("user added successfully!!!");
 });
 
 
-app.listen(3333,()=>{
-console.log("listening to 3333");
-});
+connectDB().then(()=>{
+    console.log("database connected successfully.");
+    app.listen(3000,()=>{
+    console.log("listening to 3000");
+        });
+}).catch(err=>{
+    console.log("failed to connect with DB.")
+})
