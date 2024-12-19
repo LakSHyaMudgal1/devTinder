@@ -2,23 +2,52 @@ const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
     firstName:{
-        type:String
+        type:String,
+        required:true,
+        minLength:3,
+
     },
     lastName:{
-        type:String
+        type:String,        
+
     },
     emailId:{
-        type:String
+        type:String,
+        required:true
+
     },
     password:{
-        type:String
+        type:String,
+        required:true,
+        trim: true,
+        unique: true,
+
+
     },
     age:{
         type:Number
     },
     gender:{
-        type:String
+        type:String,
+        validate(value){
+            if(!["male","female","others"].includes(value)){
+                throw new Error("gender data not valid");
+            }
+        }
+    },
+    photoURL:{
+        type: String
+    },
+    skills:{
+        type:[String]
+    },
+    about:{
+        type:String,
+        default:"nothing is written in about section."
     }
+
+},{
+    timestamps: true,
 });
 
 
