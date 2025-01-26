@@ -3,8 +3,11 @@ const express = require('express');
 const app = express();
 const connectDB = require("./config/database");
 const cookieParser = require("cookie-parser");
+const cors  = require("cors");
+
 app.use(express.json());
 app.use(cookieParser());
+app.use(cors());
 
 const authRouter = require("./routes/auth");
 const profileRouter = require("./routes/profile");
@@ -20,8 +23,8 @@ app.use("/",userRouter);
 
 connectDB().then(()=>{
     console.log("database connected successfully.");
-    app.listen(3000,()=>{
-    console.log("listening to 3000");
+    app.listen(5001,()=>{
+    console.log("listening to 5001");
         });
 }).catch(err=>{
     console.log("failed to connect with DB.")
