@@ -46,7 +46,7 @@ authRouter.post("/login",async (req,res)=>{
             // console.log(token);
 
             res.cookie("token",token)
-            res.send("login successful!!! ");
+            res.send(user);
         }
         else{
             throw new Error("wrong password .")
