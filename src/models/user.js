@@ -42,9 +42,9 @@ const userSchema = new mongoose.Schema({
             }
         }
     },
-    photoURL:{
+    photoUrl:{
         type: String,
-        default:"https://pixabay.com/vectors/blank-profile-picture-mystery-man-973460/"
+        default:"https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png"
     },
     skills:{
         type:[String]
