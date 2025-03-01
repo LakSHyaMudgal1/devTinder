@@ -7,16 +7,28 @@ const userSchema = new mongoose.Schema({
     firstName:{
         type:String,
         required:true,
-        minLength:3,
+        minLength:2,
+        maxLength:15
 
     },
     lastName:{
-        type:String,        
+        type:String,
+        required:true,
+        minLength:2,
+        maxLength:15
+   
 
     },
     emailId:{
         type:String,
-        required:true
+        required:true,
+        unique:true,
+        trim:true,
+        validate(value){
+            if(!validator.isEmail(value)){
+                throw new Error("Invalid Email Address"+value);
+            }
+        }
 
     },
     password:{
